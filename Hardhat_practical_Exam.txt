@@ -1,0 +1,121 @@
+1) Write tests for your smart contract and demonstrate
+the process of testing using Hardhat Development
+Environment.
+
+2) Demonstrate the steps involved in the process of
+deploying your smart contract to a live network.
+
+
+Answers-->
+
+Answer:1)
+
+Writing tests for a smart contract is an essential step in the development process, as it helps to ensure that the contract functions as intended and is secure. 
+
+Step 1: Set up a Hardhat project.
+
+*Install Hardhat and its dependencies.
+
+	npm install --save-dev hardhat 
+
+*Create a new Hardhat project.
+	npx hardhat init 
+
+
+Step 2: Write your smart contract in Solidity.
+
+*Create a file called contracts/Counter.sol
+
+contract Counter {
+  uint256 public counter;
+
+  function increment() public {
+    counter++;
+  }
+} 
+
+Step 3: Create a test file for your smart contract.
+
+*Create a file called test/Counter.js
+
+import {ethers} from "ethers";
+import {expect} from "chai";
+
+describe("Counter", () => {
+  let counterContract;
+
+  beforeEach(async () => {
+    counterContract = await ethers.contract(
+      `contract Counter {
+        uint256 public counter;
+
+        function increment() public {
+          counter++;
+        }
+      }
+    `
+    ).deploy();
+  });
+	
+  it("should increment the counter by 1", async () => {
+    await counterContract.increment();
+    expect(counterContract.counter).to.equal(1);
+  });
+}); 
+
+
+Step 4:Deploy your smart contract to a local development network.
+
+	npx hardhat run 
+
+Step 5:Write assertions to test your smart contract's functionality.
+
+The it function in the test file defines a test case. The await counterContract.increment() statement will call the increment function on the Counter contract and wait for the transaction to be mined. The expect(counterContract.counter).to.equal(1) statement will assert that the value of the counter variable is 
+
+Step 5:Run your tests.
+
+To run your tests, use the following command:
+
+	npx hardhat test 
+
+This will run all of the tests in the test directory and print the results to the console.
+By following these steps, you can write a smart contract test using Hardhat Development Environment.
+
+
+
+Anawers:2)
+
+Deploying a smart contract to a live network involves several steps:
+
+1) Prepare: Test and audit your smart contract.
+   This involves writing the code for the smart contract in a programming language that is supported by the blockchain platform you will be deploying to.
+
+2) Select Network: Choose the Ethereum network (mainnet, testnet, or private).
+
+3) Wallet: Set up an Ethereum wallet and fund it with ETH.
+
+4) Configuration: Configure network parameters in your development environment.
+
+5) Compile: This involves compiling the smart contract code into a format that can be understood by the blockchain platform.
+
+6) Deploy: This involves sending a transaction to the blockchain network that includes the compiled smart contract code.
+
+7) Verify: Verify the contract's source code on blockchain explorers.
+
+8) Test: Test on the Live Network- After deployment, thoroughly test your contract on the live network to ensure it behaves as expected.
+ 
+9) Monitor: This involves monitoring the smart contract to ensure that it is functioning as expected and to identify any potential issues.
+
+
+10) Announce: Publicize the contract's deployment and provide documentation.
+
+11) Backup: Maintain secure backups of deployment keys and artifacts.
+
+12) Security: Implement security measures and stay compliant with regulations.
+
+
+
+
+
+
+
